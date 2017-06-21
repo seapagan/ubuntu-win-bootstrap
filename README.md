@@ -15,7 +15,7 @@ Note also, since WSL is basically just a standard Ubuntu installation, this shou
 
 ## Important
 The default setup of WSL is to merge the Windows PATH values into the Linux path under WSL. However, this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl, Python, Ruby, Node, NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.
-Personally, I want the WSL to be a completely isolated system that will not have any Windows artifact - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result, there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop htis behavior. After that flag is set, the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.
+Personally, I want the WSL to be a completely isolated system that will not have any Windows artifact - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result, there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set, the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.
 The contents of the file `no-windows-path.reg` are :
 
 ```
