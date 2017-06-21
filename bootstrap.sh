@@ -70,7 +70,7 @@ eval "$(pyenv init -)"
 
 pyenv install 2.7.13
 pyenv install 3.6.1
-'python' and 'python2.7' target 2.7.13 while 'python3.6' targets 3.6.1
+# 'python' and 'python2.7' target 2.7.13 while 'python3.6' targets 3.6.1
 pyenv global 2.7.13 3.6.1
 
 # now to install Perl using Perlbrew...
