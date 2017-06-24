@@ -9,7 +9,7 @@ sudo apt update
 sudo apt -y full-upgrade
 
 # make sure we have the required libraries and tools already installed before starting.
-sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text
+sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev
 
 # set the DISPLAY variable to point to the XServer running on our Windows PC
 echo "export DISPLAY=:0" >> ~/.bashrc
@@ -85,6 +85,15 @@ source ~/perl5/perlbrew/etc/bashrc
 # Currently the tests will fail under WSL so we dont run them. Needs further investigation.
 perlbrew install stable --notest
 perlbrew install-cpanm
+# now install useful modules for CPAN...
+cpanm CPAN Term::ReadLine::Perl Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::Log4perl XML::LibXML Text::Glob
+# Upgrade any modules that need it...
+cpanm Net::Ping --force # this fails tests on WSL so mmuct be forced
+cpan-outdated -p | cpanm
+# set up some cpan configuration
+(echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes) | cpan
+(echo o conf prerequisites_policy follow; echo o conf build_requires_install_policy yes) | cpan
+(echo o conf colorize_output yes; echo o conf colorize_print bold white on_black; echo o conf colorize_warn bold red on_black; echo o conf colorize_debug green on_black) | cpan
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind

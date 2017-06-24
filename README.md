@@ -9,7 +9,7 @@ This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subs
 * The [`Ruby`][ruby] scripting language installed via [`Rbenv`][rbenv], with the current version of Rails installed as standard.
 * [`Node.js`][node], both the most recent LTS version and latest stable version via [`NVM`][nvm]
 * The [`Python`][python] scripting language, both the latest 2.7 and 3.x versions via [`Pyenv`][pyenv]
-* Install the latest STABLE [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm preinstalled
+* Install the latest STABLE [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm pre-installed and configured. Several PERL modules that make cpan easier are also pre-installed
 * Enable resolution of WINS hostnames
 
 Note also, since WSL is basically just a standard Ubuntu installation, this should work unmodified on an Ubuntu Distribution also.
