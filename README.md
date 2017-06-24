@@ -73,6 +73,17 @@ $ subl
 
 If you have a License for Sublime Text, copy that from your email into a file `support/License.sublime_license` before running the Bootstrap script, and it wil be properly installed to Sublime for you.
 
+## Other Utilities
+There are several other useful utilities installed, and the list is growing.
+#### GEdit (Text Editor)
+```
+$ gedit
+```
+#### PCManFM (File Manager)
+```
+$ pcmanfm
+```
+
 ## To-Do
 * More robust fall-over on already configured systems. If Rbenv etc are already installed then ignore installing that part
 * Split each different section out to it's own file for clarity
