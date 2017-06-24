@@ -35,7 +35,9 @@ git clone https://github.com/seapagan/ubuntu-win-bootstrap.git
 cd ubuntu-win-bootstrap
 ./bootstrap.sh
 ```
-
+## X-Server
+To use the included version of `Sublime Text`, we need to have an X-Server installed on the native Windows (not WSL) system. I'd recommend installing [`VcXsrv`][vcxsrv]. This is a straightforward install, and then run the 'XLaunch' utility leaving everything at the default settings. We already set the `DISPLAY` variable in WSL to point to this as part of the bootstrap.  
+Once that is installed and running, you will be able to use any other X-Window based programs you wish to install - it is even possible to have the full UBUNTU graphical desktop running if that is your desire.
 
 [wsl]: https://msdn.microsoft.com/commandline/wsl/about
 [sublime]: https://www.sublimetext.com/
@@ -48,3 +50,4 @@ cd ubuntu-win-bootstrap
 [pyenv]: https://github.com/pyenv/pyenv
 [perl]: https://www.perl.org/
 [perlbrew]: https://perlbrew.pl/
+[vcxsrv]: https://sourceforge.net/projects/vcxsrv/
