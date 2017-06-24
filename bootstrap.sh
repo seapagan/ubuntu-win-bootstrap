@@ -74,7 +74,17 @@ pyenv install 3.6.1
 pyenv global 2.7.13 3.6.1
 
 # now to install Perl using Perlbrew...
-
+\curl -L https://install.perlbrew.pl | bash
+if ! grep -qc '~/perl5/perlbrew/etc/bashrc' ~/.bashrc ; then
+  echo "## Adding Perlbrew to .bashrc ##"
+  echo "# Set up Perlbrew"
+  echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc
+fi
+# source perlbrew setup so wee can use in this shell
+source ~/perl5/perlbrew/etc/bashrc
+# Currently the tests will fail under WSL so we dont run them. Needs further investigation.
+perlbrew install stable --notest
+perlbrew install-cpanm
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
