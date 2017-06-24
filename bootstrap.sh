@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# these will run as the default non-privileged user. 
+# these will run as the default non-privileged user.
 
 # ensure we have the latest packages, including git and sublime text repos
 sudo add-apt-repository ppa:git-core/ppa
@@ -76,6 +76,12 @@ pyenv global 2.7.13 3.6.1
 # now to install Perl using Perlbrew...
 
 
+# install winbind and support lib to ping WINS hosts
+sudo apt install -y winbind libnss-winbind
+# need to append to the /etc/nsswitch.conf file to enable if not already done ...
+if ! grep -qc 'wins' /etc/nsswitch.conf
+  sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
+fi
 
 echo
 echo "You now need to close and restart the Bash shell"
