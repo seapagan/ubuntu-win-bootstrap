@@ -1,6 +1,6 @@
 # Bootstrap script for the Windows Subsytem for Linux (WSL)
 
-This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subsytem for Linux`][wsl] (WSL hereafter) with the following functionality :
+This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subsystem for Linux`][wsl] (WSL hereafter) with the following functionality :
 
 * Updated to the latest package versions from Ubuntu upstream.
 * Have the `build-essential` package installed plus all required support libraries to enable the below functionality to work.
@@ -11,6 +11,7 @@ This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subs
 * The [`Python`][python] scripting language both the latest 2.7 and 3.x versions via [`Pyenv`][pyenv]
 * Install the latest STABLE [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm pre-installed and configured. Several PERL modules that make cpan easier are also pre-installed
 * Enable resolution of WINS hostnames
+* Install `GEdit` (Text editor) and `pcmanfm` (file manager). Both can be run from the Bash shell using `gedit` and `pcmanfm` respectively
 
 Note also since WSL is basically just a standard Ubuntu installation this should work unmodified on an Ubuntu Distribution also.
 
@@ -74,7 +75,8 @@ If you have a License for Sublime Text, copy that from your email into a file `s
 
 ## To-Do
 * More robust fall-over on already configured systems. If Rbenv etc are already installed then ignore installing that part
-* split each diferent section out to it's own file for clarity
+* Split each different section out to it's own file for clarity
+* Perl `Modules IPC::Msg` and `IO::Socket::IP` fail on update, needs further investigation
 
 ## Contributing
 
