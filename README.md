@@ -42,7 +42,12 @@ To use the included version of `Sublime Text` we need to have an X-Server instal
 Once that is installed and running you will be able to use any other X-Window based programs you wish to install - it is even possible to have the full UBUNTU graphical desktop running if that is your desire.
 
 ## Sublime Text 3
-The bootstrap script will automatically install Sublime Text 3 with `Package Control` and a number of useful packages. These will properly be installed during the first run on Sublime Text. I recommend you run Sublime the first time wait a few seconds them close. Open it a second time and the packages will then be installed. It may take a few minutes for the packages start installing so try not to close the program too soon.
+The bootstrap script will automatically install Sublime Text 3 with `Package Control` and a number of useful packages. These will properly be installed during the first run on Sublime Text. I recommend you run Sublime the first time wait a few seconds them close. Open it a second time and the packages will then be installed. It may take a few minutes for the packages to start installing so try not to close the program too soon.
+
+#### Running sublime Text
+```bash
+$ subl
+```
 
 #### Packages installed are :
 * All Autocomplete
