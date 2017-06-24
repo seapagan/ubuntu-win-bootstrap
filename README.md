@@ -9,13 +9,14 @@ This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subs
 * The [`Ruby`][ruby] scripting language installed via [`Rbenv`][rbenv], with the current version of Rails installed as standard.
 * [`Node.js`][node], both the most recent LTS version and latest stable version via [`NVM`][nvm]
 * The [`Python`][python] scripting language, both the latest 2.7 and 3.x versions via [`Pyenv`][pyenv]
-* The [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm preinstalled
+* Install the latest STABLE [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm preinstalled
+* Enable resolution of WINS hostnames
 
 Note also, since WSL is basically just a standard Ubuntu installation, this should work unmodified on an Ubuntu Distribution also.
 
 ## Important
-The default setup of WSL is to merge the Windows PATH values into the Linux path under WSL. However, this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl, Python, Ruby, Node, NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.
-Personally, I want the WSL to be a completely isolated system that will not have any Windows artifact - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result, there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set, the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.
+The default setup of WSL is to merge the Windows PATH values into the Linux path. However, this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl, Python, Ruby, Node, NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.  
+Personally, I want the WSL to be a completely isolated system that will not have any Windows artifacts - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result, there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set, the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.
 The contents of the file `no-windows-path.reg` are :
 
 ```
@@ -24,6 +25,18 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss]
 "AppendNtPath"=dword:00000000
 ```
+If you uninstall and reinstall WSL for any reason, you will need to reapply the above Registry file.
+
+## Usage
+The simplest way to use this script is to clone into a completely new WSL environment. If you already have a configured WSL system, there are instructions below on how to reset this to 'factory' defaults __[TODO]__.  
+From within WSL run the following: 
+```
+git clone https://github.com/seapagan/ubuntu-win-bootstrap.git
+cd ubuntu-win-bootstrap
+./bootstrap.sh
+```
+
+
 [wsl]: https://msdn.microsoft.com/commandline/wsl/about
 [sublime]: https://www.sublimetext.com/
 [git]: https://git-scm.com
