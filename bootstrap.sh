@@ -91,14 +91,14 @@ cpanm CPAN Term::ReadLine::Perl Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App
 cpanm Net::Ping --force # this fails tests on WSL so mmuct be forced
 cpan-outdated -p | cpanm
 # set up some cpan configuration
-(echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes) | cpan
+(echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes; echo o conf commit) | cpan
 (echo o conf prerequisites_policy follow; echo o conf build_requires_install_policy yes) | cpan
 (echo o conf colorize_output yes; echo o conf colorize_print bold white on_black; echo o conf colorize_warn bold red on_black; echo o conf colorize_debug green on_black) | cpan
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
 # need to append to the /etc/nsswitch.conf file to enable if not already done ...
-if ! grep -qc 'wins' /etc/nsswitch.conf
+if ! grep -qc 'wins' /etc/nsswitch.conf then
   sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
 fi
 
