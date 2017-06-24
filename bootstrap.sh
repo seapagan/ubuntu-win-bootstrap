@@ -9,7 +9,7 @@ sudo apt update
 sudo apt -y full-upgrade
 
 # make sure we have the required libraries and tools already installed before starting.
-sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev
+sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm
 
 # set the DISPLAY variable to point to the XServer running on our Windows PC
 echo "export DISPLAY=:0" >> ~/.bashrc
@@ -22,6 +22,7 @@ cd ~/.rbenv && src/configure && make -C src
 # add the rbenv setup to our profile, only if it is not already there
 if ! grep -qc 'rbenv init' ~/.bashrc ; then
   echo "## Adding rbenv to .bashrc ##"
+  echo "Set up Rbenv" >> ~/.bashrc
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
   echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 fi
@@ -45,6 +46,12 @@ echo "gem: --no-document" > ~/.gemrc
 # install the required ruby version and set as default
 rbenv install 2.4.1
 rbenv global 2.4.1
+
+# we need to erase 2 files temporarily (they will be regenerated) otherwise the installation will pause for overwrite confirmation
+# These are the 'ri' and 'rdoc' scripts
+rm ~/.rbenv/versions/2.4.1/bin/rdoc
+rm ~/.rbenv/versions/2.4.1/bin/ri
+# now update RubyGems and the default gems
 gem update --system
 gem update
 
@@ -59,6 +66,7 @@ nvm install node
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 if ! grep -qc 'pyenv init' ~/.bashrc ; then
   echo "## Adding pyenv to .bashrc ##"
+  echo "# Set up Pyenv" >> ~/.bashrc
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
   echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
   echo 'eval "$(pyenv init -)"' >> ~/.bashrc
@@ -77,23 +85,23 @@ pyenv global 2.7.13 3.6.1
 \curl -L https://install.perlbrew.pl | bash
 if ! grep -qc '~/perl5/perlbrew/etc/bashrc' ~/.bashrc ; then
   echo "## Adding Perlbrew to .bashrc ##"
-  echo "# Set up Perlbrew"
+  echo "# Set up Perlbrew" >> ~/.bashrc
   echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc
 fi
-# source perlbrew setup so wee can use in this shell
+# source perlbrew setup so we can use in this shell
 source ~/perl5/perlbrew/etc/bashrc
 # Currently the tests will fail under WSL so we dont run them. Needs further investigation.
 perlbrew install stable --notest
 perlbrew install-cpanm
+# set up some cpan configuration
+(echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes; echo o conf commit) | cpan
+(echo o conf prerequisites_policy follow; echo o conf build_requires_install_policy yes) | cpan
+(echo o conf colorize_output yes; echo o conf colorize_print bold white on_black; echo o conf colorize_warn bold red on_black; echo o conf colorize_debug green on_black) | cpan
 # now install useful modules for CPAN...
 cpanm CPAN Term::ReadLine::Perl Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::Log4perl XML::LibXML Text::Glob
 # Upgrade any modules that need it...
 cpanm Net::Ping --force # this fails tests on WSL so mmuct be forced
 cpan-outdated -p | cpanm
-# set up some cpan configuration
-(echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes; echo o conf commit) | cpan
-(echo o conf prerequisites_policy follow; echo o conf build_requires_install_policy yes) | cpan
-(echo o conf colorize_output yes; echo o conf colorize_print bold white on_black; echo o conf colorize_warn bold red on_black; echo o conf colorize_debug green on_black) | cpan
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
