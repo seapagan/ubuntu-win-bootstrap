@@ -14,8 +14,8 @@ sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite
 # set the DISPLAY variable to point to the XServer running on our Windows PC
 echo "export DISPLAY=:0" >> ~/.bashrc
 
-# start with rbenv and plugins installation 
-export PATH="$HOME/.rbenv/bin:$PATH" 
+# start with rbenv and plugins installation
+export PATH="$HOME/.rbenv/bin:$PATH"
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
 # install dynamic bash extension
 cd ~/.rbenv && src/configure && make -C src
@@ -23,7 +23,7 @@ cd ~/.rbenv && src/configure && make -C src
 if ! grep -qc 'rbenv init' ~/.bashrc ; then
   echo "## Adding rbenv to .bashrc ##"
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-  echo 'eval "$(rbenv init -)"' >> ~/.bashrc 
+  echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 fi
 # run the above command locally so we can get rbenv to work on this provisioning shell
 eval "$(rbenv init -)"
@@ -100,6 +100,18 @@ sudo apt install -y winbind libnss-winbind
 # need to append to the /etc/nsswitch.conf file to enable if not already done ...
 if ! grep -qc 'wins' /etc/nsswitch.conf
   sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
+fi
+
+# set up Sublime Text with Package control and a useful selection of default packages.
+# You can edit the list of pre-installed packages in the file TODO
+# These packages will be installed when subl is first run
+mkdir -p ~/.config/sublime-text-3/Installed\ Packages
+mkdir -p ~/.config/sublime-text-3/Packages/User
+curl -o ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package https://packagecontrol.io/Package%20Control.sublime-package
+cp support/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User
+# install the sublime license if it is found...
+if [ -f "support/License.sublime_license"]
+  cp support/License.sublime_license ~/.config/sublime-text-3/Local
 fi
 
 echo
