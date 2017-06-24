@@ -111,7 +111,7 @@ if ! grep -qc 'wins' /etc/nsswitch.conf then
 fi
 
 # set up Sublime Text with Package control and a useful selection of default packages.
-# You can edit the list of pre-installed packages in the file TODO
+# You can edit the list of pre-installed packages in the file `./support/Package\ Control.sublime-settings`
 # These packages will be installed when subl is first run
 mkdir -p ~/.config/sublime-text-3/Installed\ Packages
 mkdir -p ~/.config/sublime-text-3/Packages/User
