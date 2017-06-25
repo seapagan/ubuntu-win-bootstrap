@@ -12,6 +12,7 @@ sudo apt -y full-upgrade
 sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm
 
 # set the DISPLAY variable to point to the XServer running on our Windows PC
+echo >> ~/.bashrc
 echo "export DISPLAY=:0" >> ~/.bashrc
 
 # start with rbenv and plugins installation
@@ -22,7 +23,8 @@ cd ~/.rbenv && src/configure && make -C src
 # add the rbenv setup to our profile, only if it is not already there
 if ! grep -qc 'rbenv init' ~/.bashrc ; then
   echo "## Adding rbenv to .bashrc ##"
-  echo "Set up Rbenv" >> ~/.bashrc
+  echo >> ~/.bashrc
+  echo "# Set up Rbenv" >> ~/.bashrc
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
   echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 fi
@@ -64,8 +66,10 @@ nvm install node
 
 # next install python (both 2.x and 3.x trees) using Pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
 if ! grep -qc 'pyenv init' ~/.bashrc ; then
   echo "## Adding pyenv to .bashrc ##"
+  echo >> ~/.bashrc
   echo "# Set up Pyenv" >> ~/.bashrc
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
   echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
@@ -85,6 +89,7 @@ pyenv global 2.7.13 3.6.1
 \curl -L https://install.perlbrew.pl | bash
 if ! grep -qc '~/perl5/perlbrew/etc/bashrc' ~/.bashrc ; then
   echo "## Adding Perlbrew to .bashrc ##"
+  echo >> ~/.bashrc
   echo "# Set up Perlbrew" >> ~/.bashrc
   echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc
 fi
@@ -107,7 +112,7 @@ cpan-outdated -p | cpanm
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
 # need to append to the /etc/nsswitch.conf file to enable if not already done ...
-if ! grep -qc 'wins' /etc/nsswitch.conf then
+if ! grep -qc 'wins' /etc/nsswitch.conf ; then
   sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
 fi
 
@@ -116,12 +121,14 @@ fi
 # These packages will be installed when subl is first run
 mkdir -p ~/.config/sublime-text-3/Installed\ Packages
 mkdir -p ~/.config/sublime-text-3/Packages/User
-curl -o ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package https://packagecontrol.io/Package%20Control.sublime-package
-cp support/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User
+curl -o "~/.config/sublime-text-3/Installed Packages/Package Control.sublime-package" https://packagecontrol.io/Package%20Control.sublime-package
+cp "support/Package Control.sublime-settings" ~/.config/sublime-text-3/Packages/User
 # install the sublime license if it is found...
-if [ -f "support/License.sublime_license"]
+if [ -f "support/License.sublime_license" ] ; then
   cp support/License.sublime_license ~/.config/sublime-text-3/Local
 fi
+# it would also be very useful to pre-configure some Subl default settings at this time
+# TODO
 
 echo
 echo "You now need to close and restart the Bash shell"
