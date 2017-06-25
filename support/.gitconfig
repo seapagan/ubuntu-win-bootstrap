@@ -1,0 +1,11 @@
+[alias]
+        st = status
+        co = checkout
+        br = branch
+        ci = commit
+        cl = clone
+[push]
+        default = current
+[credential]
+        helper = cache --timeout 3600
+
