@@ -19,7 +19,10 @@ Note also since WSL is basically just a standard Ubuntu installation this should
 
 ## Important
 The default setup of WSL is to merge the Windows PATH values into the Linux path. However this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl Python Ruby Node NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.  
-Personally I want the WSL to be a completely isolated system that will not have any Windows artifacts - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.
+Personally I want the WSL to be a completely isolated system that will not have any Windows artifacts - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.  
+__You must run this registry file from a standard `Windows command prompt (NOT WSL)` or using Explorer
+, and the WSL (Bash) environment must be CLOSED before you do this.__  
+
 The contents of the file `no-windows-path.reg` are :
 
 ```
@@ -71,23 +74,28 @@ $ subl
 * Terminal
 * TrailingSpaces
 
+The list of packages that are installed can be changed or added to by editing the  [Package Control.sublime-settings](support/Package Control.sublime-settings)
+
 If you have a License for Sublime Text, copy that from your email into a file `support/License.sublime_license` before running the Bootstrap script, and it wil be properly installed to Sublime for you.
 
 ## Other Utilities
 There are several other useful utilities installed, and the list is growing.
 #### GEdit (Text Editor)
+A nice basic text editor when you don't need all the functionality of Sublime Text.
 ```
 $ gedit
 ```
 #### PCManFM (File Manager)
+A useful file manager to export and maintain the WSL file system. Especially since you should NEVER create, edit or delete files within the WSL structure using any Windows tool.
 ```
 $ pcmanfm
 ```
 
 ## To-Do
+
 * More robust fall-over on already configured systems. If Rbenv etc are already installed then ignore installing that part
 * Split each different section out to it's own file for clarity
-* Perl `Modules IPC::Msg` and `IO::Socket::IP` fail on update, needs further investigation
+* Perl Modules `IPC::Msg` and `IO::Socket::IP` fail on update, needs further investigation
 
 ## Contributing
 
