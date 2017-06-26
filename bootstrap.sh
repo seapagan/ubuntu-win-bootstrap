@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # these will run as the default non-privileged user.
 
+# save the path to this script for later use
+THISPATH="$(dirname $(readlink -f "$0"))"
+echo "We are running from : $THISPATH"
+
 # ensure we have the latest packages, including git and sublime text repos
 sudo add-apt-repository ppa:git-core/ppa
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -58,6 +62,9 @@ gem update --system
 gem update
 
 # now install nvm, the latest LTS version of Node and the latest actual verision of Node..
+echo "## Setting up NVM (Node Version Manager) ##"
+echo >> ~/.bashrc
+echo "# Set up NVM" >> ~/.bashrc
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
@@ -121,11 +128,11 @@ fi
 # These packages will be installed when subl is first run
 mkdir -p ~/.config/sublime-text-3/Installed\ Packages
 mkdir -p ~/.config/sublime-text-3/Packages/User
-curl -o "~/.config/sublime-text-3/Installed Packages/Package Control.sublime-package" https://packagecontrol.io/Package%20Control.sublime-package
-cp "support/Package Control.sublime-settings" ~/.config/sublime-text-3/Packages/User
+curl -o ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package https://packagecontrol.io/Package%20Control.sublime-package
+cp $THISPATH/support/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User
 # install the sublime license if it is found...
-if [ -f "support/License.sublime_license" ] ; then
-  cp support/License.sublime_license ~/.config/sublime-text-3/Local
+if [ -f "$THISPATH/support/License.sublime_license" ] ; then
+  cp $THISPATH/support/License.sublime_license ~/.config/sublime-text-3/Local
 fi
 # it would also be very useful to pre-configure some Subl default settings at this time
 # TODO
