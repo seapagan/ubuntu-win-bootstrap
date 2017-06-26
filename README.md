@@ -74,7 +74,7 @@ $ subl
 * Terminal
 * TrailingSpaces
 
-The list of packages that are installed can be changed or added to by editing the  [Package Control.sublime-settings](support/Package Control.sublime-settings)
+The list of packages that are installed can be changed or added to by editing the  [Package Control.sublime-settings](support/Package%20Control.sublime-settings)
 
 If you have a License for Sublime Text, copy that from your email into a file `support/License.sublime_license` before running the Bootstrap script, and it wil be properly installed to Sublime for you.
 
