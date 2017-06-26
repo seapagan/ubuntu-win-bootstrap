@@ -113,7 +113,7 @@ perlbrew install-cpanm
 # now install useful modules for CPAN...
 cpanm CPAN Term::ReadLine::Perl Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::Log4perl XML::LibXML Text::Glob
 # Upgrade any modules that need it...
-cpanm Net::Ping --force # this fails tests on WSL so mmuct be forced
+cpanm Net::Ping --force # this fails tests on WSL so must be forced
 cpan-outdated -p | cpanm
 
 # install winbind and support lib to ping WINS hosts
@@ -121,6 +121,11 @@ sudo apt install -y winbind libnss-winbind
 # need to append to the /etc/nsswitch.conf file to enable if not already done ...
 if ! grep -qc 'wins' /etc/nsswitch.conf ; then
   sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
+fi
+
+# copy a basic .gitconfig if we have it...
+if [ -f "$THISPATH/support/.gitconfig" ] ; then
+  cp $THISPATH/support/.gitconfig ~/.gitconfig
 fi
 
 # set up Sublime Text with Package control and a useful selection of default packages.
