@@ -133,6 +133,7 @@ fi
 # These packages will be installed when subl is first run
 mkdir -p ~/.config/sublime-text-3/Installed\ Packages
 mkdir -p ~/.config/sublime-text-3/Packages/User
+mkdir -p ~/.config/sublime-text-3/Local
 curl -o ~/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package https://packagecontrol.io/Package%20Control.sublime-package
 cp $THISPATH/support/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User
 # install the sublime license if it is found...
