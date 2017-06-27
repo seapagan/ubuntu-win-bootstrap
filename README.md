@@ -5,20 +5,20 @@ This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subs
 * Updated to the latest package versions from Ubuntu upstream.
 * Have the `build-essential` package installed plus all required support libraries to enable the below functionality to work.
 * [`Sublime Text 3`][sublime] Editor installed as standard with `Package Control` and a number of useful packages.
-* The Latest version of [`Git`][git] installed.
-* The [`Ruby`][ruby] scripting language installed via [`Rbenv`][rbenv] with the current version of Rails installed as standard.
-* [`Node.js`][node] both the most recent LTS version and latest stable version via [`NVM`][nvm]
+* The Latest version of [`Git`][git] installed. A skeleton `.gitconfig` will be set up with a few aliases.
+* The [`Ruby`][ruby] scripting language installed via [`Rbenv`][rbenv] with the current version of Rails installed as standard along with several other common gems.
+* [`Node.js`][node] both the most recent LTS version and latest stable version via [`NVM`][nvm]. The LTS version is activated by default.
 * The [`Python`][python] scripting language both the latest 2.7 and 3.x versions via [`Pyenv`][pyenv]
 * Install the latest STABLE [`Perl`][perl] scripting language via [`Perlbrew`][perlbrew] with cpan and cpanm pre-installed and configured. Several PERL modules that make cpan easier are also pre-installed
 * Enable resolution of WINS hostnames
 * Install `GEdit` (Text editor) and `pcmanfm` (file manager). Both can be run from the Bash shell using `gedit` and `pcmanfm` respectively
 
-Note also since WSL is basically just a standard Ubuntu installation this should work unmodified on an Ubuntu Distribution also.
+Note also since WSL is basically just a standard Ubuntu installation this sctipt should also work unmodified on an Ubuntu Distribution, though currently untested.
 
 **Please read all of this file before starting**
 
 ## Important
-The default setup of WSL is to merge the Windows PATH values into the Linux path. However this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl Python Ruby Node NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.  
+The default setup of WSL is to merge the Windows PATH values into the Linux path. However this can lead to problems and contamination. for example if you have comparable tools installed under native Windows (Perl, Python, Ruby, Node, NVM etc) then they could conflict with or bypass the WSL Linux equivalents __even causing the bootstrap script to fail__.  
 Personally I want the WSL to be a completely isolated system that will not have any Windows artifacts - for a start it makes the PATH variable a great deal shorter and easier to troubleshoot!! To this result there is a Windows registry file `no-windows-path.reg` in the repository that sets a simple registry flag to stop this behavior. After that flag is set the only PATH strings __under WSL__ will be those required by Linux. Note that this will __not__ affect your Windows PATH in any way.  
 __You must run this registry file from a standard `Windows command prompt (NOT WSL)` or using Explorer
 , and the WSL (Bash) environment must be CLOSED before you do this.__  
@@ -46,7 +46,7 @@ To use the included version of `Sublime Text` we need to have an X-Server instal
 Once that is installed and running you will be able to use any other X-Window based programs you wish to install - it is even possible to have the full UBUNTU graphical desktop running if that is your desire.
 
 ## Sublime Text 3
-The bootstrap script will automatically install Sublime Text 3 with `Package Control` and a number of useful packages. These will properly be installed during the first run on Sublime Text. I recommend you run Sublime the first time wait a few seconds them close. Open it a second time and the packages will then be installed. It may take a few minutes for the packages to start installing so try not to close the program too soon.
+The bootstrap script will automatically install Sublime Text 3 with `Package Control` and a number of useful packages. These will properly be installed during the first and second times Sublime Text is opened. I recommend you run Sublime the first time,  wait a few seconds them close (this installs the `Package control` plugin). Open it a second time and the rest of the packages will be installed. It may take a few minutes for the packages to install depending on your internet speed so try not to close the program too soon.
 
 #### Running sublime Text
 ```bash
