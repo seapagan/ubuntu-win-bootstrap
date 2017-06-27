@@ -15,6 +15,13 @@ sudo apt -y full-upgrade
 # make sure we have the required libraries and tools already installed before starting.
 sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm
 
+# install winbind and support lib to ping WINS hosts
+sudo apt install -y winbind libnss-winbind
+# need to append to the /etc/nsswitch.conf file to enable if not already done ...
+if ! grep -qc 'wins' /etc/nsswitch.conf ; then
+  sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
+fi
+
 # set the DISPLAY variable to point to the XServer running on our Windows PC
 echo >> ~/.bashrc
 echo "export DISPLAY=:0" >> ~/.bashrc
@@ -116,13 +123,6 @@ cpanm CPAN Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::L
 # Upgrade any modules that need it...
 cpanm Net::Ping --force # this fails tests on WSL so must be forced
 cpan-outdated -p | cpanm
-
-# install winbind and support lib to ping WINS hosts
-sudo apt install -y winbind libnss-winbind
-# need to append to the /etc/nsswitch.conf file to enable if not already done ...
-if ! grep -qc 'wins' /etc/nsswitch.conf ; then
-  sudo sed -i '/hosts:/ s/$/ wins/' /etc/nsswitch.conf
-fi
 
 # copy a basic .gitconfig if we have it...
 if [ -f "$THISPATH/support/.gitconfig" ] ; then
