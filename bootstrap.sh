@@ -47,7 +47,7 @@ git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv
 git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
 git clone https://github.com/rbenv/rbenv-each.git ~/.rbenv/plugins/rbenv-each
 git clone https://github.com/nabeo/rbenv-gem-migrate.git ~/.rbenv/plugins/rbenv-gem-migrate
-git clone git://github.com/jf/rbenv-gemset.git ~/.rbenv/plugins/rbenv-gemset
+git clone https://github.com/jf/rbenv-gemset.git ~/.rbenv/plugins/rbenv-gemset
 git clone https://github.com/nicknovitski/rbenv-gem-update ~/.rbenv/plugins/rbenv-gem-update
 git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
 git clone https://github.com/toy/rbenv-update-rubies.git ~/.rbenv/plugins/rbenv-update-rubies
