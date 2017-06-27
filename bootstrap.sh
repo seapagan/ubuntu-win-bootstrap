@@ -111,7 +111,8 @@ perlbrew install-cpanm
 (echo o conf prerequisites_policy follow; echo o conf build_requires_install_policy yes) | cpan
 (echo o conf colorize_output yes; echo o conf colorize_print bold white on_black; echo o conf colorize_warn bold red on_black; echo o conf colorize_debug green on_black) | cpan
 # now install useful modules for CPAN...
-cpanm CPAN Term::ReadLine::Perl Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::Log4perl XML::LibXML Text::Glob
+cpanm Term::ReadLine::Perl --notest # we install this separately and with no tests so it will not timeout on unattended installs. Ohterwise may timeout and crash the script.
+cpanm CPAN Term::ReadKey YAML YAML::XS LWP CPAN::SQLite App::cpanoutdated Log::Log4perl XML::LibXML Text::Glob
 # Upgrade any modules that need it...
 cpanm Net::Ping --force # this fails tests on WSL so must be forced
 cpan-outdated -p | cpanm
