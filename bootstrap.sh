@@ -86,7 +86,7 @@ nvm use --lts
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 # install a couple of plugins...
 git clone git://github.com/yyuu/pyenv-pip-migrate.git ~/.pyenv/plugins/pyenv-pip-migrate
-git clone https://github.com/yyuu/pyenv-ccache.git $(pyenv root)/plugins/pyenv-ccache
+git clone https://github.com/yyuu/pyenv-ccache.git ~/.pyenv/plugins/pyenv-ccache
 
 if ! grep -qc 'pyenv init' ~/.bashrc ; then
   echo "## Adding pyenv to .bashrc ##"
