@@ -1,4 +1,4 @@
-# Bootstrap script for the Windows Subsytem for Linux (WSL)
+# Bootstrap script for the Windows Subsystem for Linux (WSL)
 
 This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subsystem for Linux`][wsl] (WSL hereafter) with the following functionality :
 
