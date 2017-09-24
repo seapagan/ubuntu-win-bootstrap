@@ -42,7 +42,7 @@ fi
 # run the above command locally so we can get rbenv to work on this provisioning shell
 eval "$(rbenv init -)"
 # install a set of useful plugins for rbenv...
-mkdir -p /home/seapagan/.rbenv/plugins
+mkdir -p ~/.rbenv/plugins
 git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv-binstubs
 git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
 git clone https://github.com/rbenv/rbenv-each.git ~/.rbenv/plugins/rbenv-each
