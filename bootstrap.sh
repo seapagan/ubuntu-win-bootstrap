@@ -13,7 +13,7 @@ sudo apt update
 sudo apt -y full-upgrade
 
 # make sure we have the required libraries and tools already installed before starting.
-sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm
+sudo apt install -y build-essential gettext libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm ccache
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
@@ -52,18 +52,20 @@ git clone https://github.com/nicknovitski/rbenv-gem-update ~/.rbenv/plugins/rben
 git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
 git clone https://github.com/toy/rbenv-update-rubies.git ~/.rbenv/plugins/rbenv-update-rubies
 git clone https://github.com/rkh/rbenv-whatis.git ~/.rbenv/plugins/rbenv-whatis
+git clone https://github.com/yyuu/rbenv-ccache.git ~/.rbenv/plugins/rbenv-ccache
+
 # set up a default-gems file for gems to install with each ruby...
 echo $'bundler\nsass\nscss_lint\nrails\nrspec\nrspec-rails' > ~/.rbenv/default-gems
 # set up .gemrc to avoid installing documentation for each gem...
 echo "gem: --no-document" > ~/.gemrc
 # install the required ruby version and set as default
-rbenv install 2.4.1
-rbenv global 2.4.1
+rbenv install 2.4.2
+rbenv global 2.4.2
 
 # we need to erase 2 files temporarily (they will be regenerated) otherwise the installation will pause for overwrite confirmation
 # These are the 'ri' and 'rdoc' scripts
-rm ~/.rbenv/versions/2.4.1/bin/rdoc
-rm ~/.rbenv/versions/2.4.1/bin/ri
+rm ~/.rbenv/versions/2.4.2/bin/rdoc
+rm ~/.rbenv/versions/2.4.2/bin/ri
 # now update RubyGems and the default gems
 gem update --system
 gem update
@@ -72,14 +74,18 @@ gem update
 echo "## Setting up NVM (Node Version Manager) ##"
 echo >> ~/.bashrc
 echo "# Set up NVM" >> ~/.bashrc
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 nvm install --lts
 nvm install node
+nvm use --lts
 
 # next install python (both 2.x and 3.x trees) using Pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+# install a couple of plugins...
+git clone git://github.com/yyuu/pyenv-pip-migrate.git ~/.pyenv/plugins/pyenv-pip-migrate
+git clone https://github.com/yyuu/pyenv-ccache.git $(pyenv root)/plugins/pyenv-ccache
 
 if ! grep -qc 'pyenv init' ~/.bashrc ; then
   echo "## Adding pyenv to .bashrc ##"
@@ -94,10 +100,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-pyenv install 2.7.13
-pyenv install 3.6.1
+pyenv install 2.7.14
+pyenv install 3.6.2
 # 'python' and 'python2.7' target 2.7.13 while 'python3.6' targets 3.6.1
-pyenv global 2.7.13 3.6.1
+pyenv global 2.7.14 3.6.2
 
 # now to install Perl using Perlbrew...
 \curl -L https://install.perlbrew.pl | bash
