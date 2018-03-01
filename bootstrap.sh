@@ -64,8 +64,8 @@ rbenv global 2.4.3
 
 # we need to erase 2 files temporarily (they will be regenerated) otherwise the installation will pause for overwrite confirmation
 # These are the 'ri' and 'rdoc' scripts
-rm ~/.rbenv/versions/2.4.2/bin/rdoc
-rm ~/.rbenv/versions/2.4.2/bin/ri
+rm ~/.rbenv/versions/2.4.3/bin/rdoc
+rm ~/.rbenv/versions/2.4.3/bin/ri
 # now update RubyGems and the default gems
 gem update --system
 gem update
