@@ -101,10 +101,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-pyenv install 2.7.14
-pyenv install 3.6.2
-# 'python' and 'python2.7' target 2.7.13 while 'python3.6' targets 3.6.1
-pyenv global 2.7.14 3.6.2
+pyenv install 2.7.15
+pyenv install 3.6.5
+# 'python' and 'python2.7' target 2.7.15 while 'python3.6' targets 3.6.5
+pyenv global 2.7.15 3.6.5
 
 # now to install Perl using Perlbrew...
 \curl -L https://install.perlbrew.pl | bash
