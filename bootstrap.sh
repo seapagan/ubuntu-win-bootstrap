@@ -13,7 +13,7 @@ sudo apt update
 sudo apt -y full-upgrade
 
 # make sure we have the required libraries and tools already installed before starting.
-sudo apt install -y build-essential gettext libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm ccache
+sudo apt install -y build-essential curl gettext libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm ccache
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
