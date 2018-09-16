@@ -13,7 +13,7 @@ sudo apt update
 sudo apt -y full-upgrade
 
 # make sure we have the required libraries and tools already installed before starting.
-sudo apt install -y build-essential curl gettext libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm ccache
+sudo apt install -y build-essential curl gettext libssl-dev libreadline-dev zlib1g-dev sqlite3 libsqlite3-dev libgtk2.0-0 libbz2-dev sublime-text libxml2-dev libdb-dev gedit pcmanfm ccache libffi-dev
 
 # install winbind and support lib to ping WINS hosts
 sudo apt install -y winbind libnss-winbind
@@ -59,13 +59,13 @@ echo $'bundler\nsass\nscss_lint\nrails\nrspec\nrspec-rails' > ~/.rbenv/default-g
 # set up .gemrc to avoid installing documentation for each gem...
 echo "gem: --no-document" > ~/.gemrc
 # install the required ruby version and set as default
-rbenv install 2.4.4
-rbenv global 2.4.4
+rbenv install 2.5.1
+rbenv global 2.5.1
 
 # we need to erase 2 files temporarily (they will be regenerated) otherwise the installation will pause for overwrite confirmation
 # These are the 'ri' and 'rdoc' scripts
-rm ~/.rbenv/versions/2.4.4/bin/rdoc
-rm ~/.rbenv/versions/2.4.4/bin/ri
+rm ~/.rbenv/versions/2.5.1/bin/rdoc
+rm ~/.rbenv/versions/2.5.1/bin/ri
 # now update RubyGems and the default gems
 gem update --system
 gem update
@@ -102,9 +102,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 pyenv install 2.7.15
-pyenv install 3.6.5
+pyenv install 3.7.0
 # 'python' and 'python2.7' target 2.7.15 while 'python3.6' targets 3.6.5
-pyenv global 2.7.15 3.6.5
+pyenv global 2.7.15 3.7.0
 
 # now to install Perl using Perlbrew...
 \curl -L https://install.perlbrew.pl | bash
@@ -117,8 +117,8 @@ fi
 # source perlbrew setup so we can use in this shell
 source ~/perl5/perlbrew/etc/bashrc
 # Currently the tests will fail under WSL so we dont run them. Needs further investigation.
-perlbrew install perl-5.27.9 --notest
-perlbrew switch perl-5.27.9
+perlbrew install perl-5.29.2 --notest
+perlbrew switch perl-5.29.2
 perlbrew install-cpanm
 # set up some cpan configuration
 (echo y; echo o conf auto_commit 1; echo o conf yaml_module YAML::XS; echo o conf use_sqlite yes; echo o conf commit) | cpan
