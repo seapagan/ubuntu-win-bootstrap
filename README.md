@@ -119,4 +119,4 @@ $ pcmanfm
 [perl]: https://www.perl.org/
 [perlbrew]: https://perlbrew.pl/
 [vcxsrv]: https://sourceforge.net/projects/vcxsrv/
-[lcc]: seapagan/linux-comfy-chair
+[lcc]: https://github.com/seapagan/linux-comfy-chair
