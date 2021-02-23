@@ -1,5 +1,7 @@
 # Bootstrap script for the Windows Subsystem for Linux (WSL)
 
+PLEASE BE AWARE : This information is quite out of date, and WSL has moved on since it was written. Now, my other repo [`Linux Comfy Chair`][lcc] should work for the WSL Ubuntu images and other Debian-based Distros.
+
 This is a very simple (for now) script to set up a NEW UNMODIFIED [`Windows Subsystem for Linux`][wsl] (WSL hereafter) with the following functionality :
 
 * Updated to the latest package versions from Ubuntu upstream.
@@ -117,3 +119,4 @@ $ pcmanfm
 [perl]: https://www.perl.org/
 [perlbrew]: https://perlbrew.pl/
 [vcxsrv]: https://sourceforge.net/projects/vcxsrv/
+[lcc]: seapagan/linux-comfy-chair
